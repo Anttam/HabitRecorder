@@ -1,0 +1,16 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  max-width: 800px;
+  margin:1rem auto;
+  background-color: #4C4E52;
+}
+.header-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}

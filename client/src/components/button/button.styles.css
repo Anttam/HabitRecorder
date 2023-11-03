@@ -1,0 +1,21 @@
+.buttons-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:1rem;
+}
+button{
+  width: 11rem;
+  height: 11rem;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  font-size: 8rem;
+}
+
+.button-up{
+  background-color: green;
+}
+.button-down{
+  background-color: red;
+}
