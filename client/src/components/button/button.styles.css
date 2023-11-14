@@ -15,7 +15,10 @@ button{
 
 .button-up{
   background-color: green;
+  color: green;
+  text-shadow: -1px -1px 0 blue, 1px -1px 0 blue, -1px 1px 0 blue, 1px 1px 0 blue;
 }
 .button-down{
   background-color: red;
+  color: orange;
 }
