@@ -1,13 +1,7 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import "github.com/anttam/goodOrBadHabitRecorder/server/router"
 
 func main (){
-	request := gin.Default()
-	request.GET("/", func(context *gin.Context){
-		context.JSON(200, gin.H{
-			"message": "hello from the server!",
-		})
-	})
-	request.Run()
+		router.Start()
 }
