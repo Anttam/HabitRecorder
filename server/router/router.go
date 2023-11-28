@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 type RequestBody struct{
-	Number int 
+	Habit string 
 }
 
 
@@ -25,8 +25,7 @@ func Start() {
 		 if err := c.BindJSON(&request); err!= nil{
 			panic(err)
 		 }
-
-		 fmt.Println(request.Number)
+		 fmt.Println(request.Habit)
 
 	})
 

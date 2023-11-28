@@ -3,13 +3,11 @@ import { APIURL } from "../../api";
 
 const Button = ({ type }) => {
   const handleButtonClick = async () => {
-    
-    let habitValue = type === "good" ?  1 :  -1
     try {
       const res = await fetch(APIURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ number: habitValue} )
+        body: JSON.stringify({ habit: type} )
       });
 
       console.log(res.body)
