@@ -5,9 +5,7 @@ import (
 "gorm.io/gorm"
 "os"
 "log"
-
 )
-
 func ConnectToDb () (*gorm.DB){
 	signOn := os.Getenv("DATABASEURL")
 	db, err := gorm.Open(postgres.Open(signOn), &gorm.Config{})

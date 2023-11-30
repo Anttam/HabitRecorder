@@ -1,11 +1,11 @@
 package router
 
 import (
-	"fmt"
-	
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+
+	"github.com/anttam/goodOrBadHabitRecorder/server/controllers"
 )
 type RequestBody struct{
 	Habit string 
@@ -20,14 +20,7 @@ func Start() {
 		AllowHeaders: []string{"Origin","Content-Type"},
 	}))
 
-	r.POST("/", func(c *gin.Context){
-		var request RequestBody
-		 if err := c.BindJSON(&request); err!= nil{
-			panic(err)
-		 }
-		 fmt.Println(request.Habit)
-
-	})
+	r.POST("/", controllers.HandlePost)
 
 	r.Run(":8000")
 }
