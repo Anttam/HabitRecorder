@@ -7,3 +7,8 @@ type Habit struct {
 	Date string
 	HabitCount int
 }
+
+type HabitCount struct {
+	Date string
+	HabitCount int
+}

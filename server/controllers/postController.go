@@ -12,10 +12,8 @@ import (
 )
 type RequestBody struct{
 	Habit string 
+	Uid string
 }
-
-var DB *gorm.DB
-
 func HandlePost (c *gin.Context){
 		var request RequestBody
 		requestValue := 0;
@@ -35,39 +33,39 @@ func HandlePost (c *gin.Context){
 		 //declare habit and query
 		 habit := models.Habit{
 			ID:uuid.New().String(),
-			Uid: "test",
+			Uid: request.Uid,
 			Date: time.Now().Format("01-02-2006"),
 			HabitCount: requestValue,}
 
-			var query models.Habit
-
 			// check if record exists for user ID and date
-		   err:= DB.Where("uid = ? AND date = ?", habit.Uid, habit.Date).First(&query).Error
+		   query,err:= SearchForExistingRecord(habit)
 			 if err != nil{
 				//if no record, create one
 			 	if errors.Is(err, gorm.ErrRecordNotFound){
-					err := createDatabaseEntry(habit)
-					if err!= nil{
-						c.Data(400, "application/json", []byte(`{"message" : "unable to create record"}`))
-					}else{
-					c.Data(201, "application/json", []byte(`{"message" : "No data entry, created new entry"}`))
-					}
+					err := CreateDatabaseEntry(habit)
+						if err!= nil{
+							//handle error creating entry
+							c.JSON(
+								400,
+								gin.H{"message" : "unable to create record"})
+						}else{
+						c.Status(204)
+						}
+			//else send error for other than No Record error
 				}else{
-				//else send error
-				c.Data(400, "application/json", []byte(`{"message" : "unable to create record"}`))
-				}
+				c.JSON(
+					400,
+					gin.H{"message" : "unable to create record"})
 			}
-		 // if, update record with habit 
+		 // if record found, update record with habit 
 		 if query.ID != ""{
 			query.HabitCount = query.HabitCount + requestValue;
 			DB.Save(&query)
+			 // send success message
+			 c.JSON(201, gin.H{"message":"record found. Count updated"})
+			// c.Data(204, "application/json", []byte(`{"message": "record found. Count updated"}`))
 		 }
 
-		 // send success message
+		
 }
-
-func createDatabaseEntry(data models.Habit)(error){
-	result := DB.Create(data)
-	return result.Error
 }
-

@@ -7,7 +7,7 @@ const Button = ({ type }) => {
       const res = await fetch(APIURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ habit: type} )
+        body: JSON.stringify({ habit: type, uid: "test"} )
       });
 
       console.log(res.body)
