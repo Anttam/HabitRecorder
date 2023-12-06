@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/anttam/goodOrBadHabitRecorder/server/models"
@@ -29,7 +30,6 @@ func HandlePost (c *gin.Context){
 		 }else{
 			c.Data(400, "application/json",[]byte(`{"message":"Invalid button type"}`))
 		 }
-
 		 //declare habit and query
 		 habit := models.Habit{
 			ID:uuid.New().String(),
@@ -37,8 +37,9 @@ func HandlePost (c *gin.Context){
 			Date: time.Now().Format("01-02-2006"),
 			HabitCount: requestValue,}
 
+	
 			// check if record exists for user ID and date
-		   query,err:= SearchForExistingRecord(habit)
+		   query,err:= SearchForExistingRecord(habit.Uid, habit.Date)
 			 if err != nil{
 				//if no record, create one
 			 	if errors.Is(err, gorm.ErrRecordNotFound){
@@ -57,7 +58,9 @@ func HandlePost (c *gin.Context){
 					400,
 					gin.H{"message" : "unable to create record"})
 			}
+		}
 		 // if record found, update record with habit 
+		 fmt.Println(query.ID)
 		 if query.ID != ""{
 			query.HabitCount = query.HabitCount + requestValue;
 			DB.Save(&query)
@@ -67,5 +70,4 @@ func HandlePost (c *gin.Context){
 		 }
 
 		
-}
 }

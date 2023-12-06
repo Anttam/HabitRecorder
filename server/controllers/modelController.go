@@ -13,11 +13,11 @@ func CreateDatabaseEntry(data models.Habit)(error){
 	return result.Error
 }
 
-func SearchForExistingRecord(requestHabit models.Habit )( models.Habit, error){
+func SearchForExistingRecord(uid string, date string )( models.Habit, error){
 	var query models.Habit
 	err :=DB.Where(
 		"uid = ? AND date = ?",
-		 requestHabit.Uid, 
-		 requestHabit.Date).First(&query).Error
+		 uid, 
+		 date).First(&query).Error
 	return query, err
 }
