@@ -1,6 +1,7 @@
 import './app.styles.css'
 import Button from "./components/button/button.compnent"
 import Header from './components/header/header.component'
+import About from "./components/about/about.component"
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <Button type ='bad'/>
    </div>
     </div>
+    <About />
   </>
    
   )

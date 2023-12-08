@@ -1,24 +1,29 @@
+/* text color #8FB9CD */
+/* background color #404D64 */
+
 .buttons-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap:1rem;
+  gap:.5rem;
 }
 button{
-  width: 11rem;
-  height: 11rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
-  border-radius: 50%;
-  font-size: 8rem;
+  cursor: pointer;
 }
 
-.button-up{
-  background-color: green;
-  color: green;
-  text-shadow: -1px -1px 0 blue, 1px -1px 0 blue, -1px 1px 0 blue, 1px 1px 0 blue;
+.button-img{
+  width: 15rem
 }
-.button-down{
-  background-color: red;
-  color: orange;
+
+
+@media (max-width: 320px) {
+  .button-img{
+    width: 11rem
+  }
+  
 }

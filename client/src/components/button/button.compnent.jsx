@@ -1,5 +1,8 @@
 import "./button.styles.css";
 import { APIURL } from "../../api";
+import goodHabitButton from '../../assets/good habit button.png'
+import badHabitButton from '../../assets/bad habit button.png'
+
 
 const Button = ({ type }) => {
   const handleButtonClick = async () => {
@@ -22,13 +25,16 @@ const Button = ({ type }) => {
 
   if (type === "good")
     return (
-      <button className="button-up" onClick={handleButtonClick}>
-        
-        &#9650;
+      <button className=" button button-up" onClick={handleButtonClick}>
+        <img src={goodHabitButton} className="button-img"/>
       </button>
+
     );
   if (type === "bad") {
-    return <button className="button-down"onClick={handleButtonClick}> &#9660;</button>;
+    return (
+    <button className="button button-down"onClick={handleButtonClick}>
+        <img src={badHabitButton} className="button-img"/>
+       </button>)
   }
 };
 
