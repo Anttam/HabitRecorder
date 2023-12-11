@@ -1,4 +1,4 @@
-#Habit Recorder
+# Habit Recorder
 
 this app is a Good or Bad Habit tracker. I was inspired to create this app after reading the book "Atomic Habits" by James Clear. 
 
